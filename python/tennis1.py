@@ -17,6 +17,9 @@ class TennisGame1:
             return self.__score_is_equal()
         if self.player1_points >= 4 or self.player2_points >= 4:
             return self.__is_win_or_advantage(points_difference)
+        return self.__calculate_score()
+
+    def __calculate_score(self):
         result = ""
         for i in range(1, 3):
             if i == 1:
