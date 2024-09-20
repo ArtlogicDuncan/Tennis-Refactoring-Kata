@@ -14,14 +14,10 @@ class TennisGame1:
     def score(self):
         result = ""
         temp_score = 0
-        if self.player1_points == self.player2_points:
-            result = {
-                0: "Love-All",
-                1: "Fifteen-All",
-                2: "Thirty-All",
-            }.get(self.player1_points, "Deuce")
+        points_difference = self.player1_points - self.player2_points
+        if points_difference == 0:
+            result = self.__score_is_equal()
         elif self.player1_points >= 4 or self.player2_points >= 4:
-            points_difference = self.player1_points - self.player2_points
             result = self.__is_win_or_advantage(points_difference)
         else:
             for i in range(1, 3):
@@ -36,6 +32,14 @@ class TennisGame1:
                     2: "Thirty",
                     3: "Forty",
                 }[temp_score]
+        return result
+
+    def __score_is_equal(self):
+        result = {
+            0: "Love-All",
+            1: "Fifteen-All",
+            2: "Thirty-All",
+        }.get(self.player1_points, "Deuce")
         return result
 
     def __is_win_or_advantage(self, points_difference):
